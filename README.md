@@ -1,6 +1,6 @@
 # Simpl-Virtual-Stack-Machine
 ### Screencast:
-![alt-text]()
+![alt-text](https://github.com/Acool4ik/Simpl-Virtual-Stack-Machine/blob/master/images/Screencastgif)
 ### Supported inctructions:
 Byte-code | Instruction | Cnt args | high level lang analog
 :---: | :---: | :---: | :---: |
