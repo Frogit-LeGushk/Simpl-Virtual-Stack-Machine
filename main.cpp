@@ -8,7 +8,6 @@
 #include <assert.h>
 #include <unordered_map>
 
-
 /** supported instructions **/
 enum {
     // 0     1        2       3
@@ -59,7 +58,6 @@ static uint8_t readOpcode(const std::string & line, std::string & token1, std::s
     return opcode;
 }
 
-
 /** check line on void **/
 static bool isEmptyLine(const std::string & line) {
     bool isEmpty = true;
@@ -105,15 +103,10 @@ int8_t compileCode(const std::string & input, const std::string & output) {
         isEmpty = isEmptyLine(line);
         opcode  = readOpcode(line, token1, token2);
 
-        if(opcode == UNKNOWN && isEmpty)
-            continue;
-        if(opcode == COMMENT)
-            continue;
+        if(opcode == UNKNOWN && isEmpty)    continue;
+        if(opcode == COMMENT)               continue;
         if(opcode == UNKNOWN && !isEmpty)
-        {
-            std::cerr << "Syntax error: line " << line_pos << std::endl;
-            continue;
-        }
+        { std::cerr << "Syntax error: line " << line_pos << std::endl; continue; }
 
         program += line;
         switch(opcode) {
@@ -132,7 +125,6 @@ int8_t compileCode(const std::string & input, const std::string & output) {
         }
     }
     if(exist_err) return exist_err;
-
 
     /** 2) compilation stage **/
     in_file.clear();
@@ -171,6 +163,8 @@ int8_t compileCode(const std::string & input, const std::string & output) {
 
     return 0;
 }
+
+/** execute compiled code **/
 int32_t executeCode(const std::string & filename, bool debug_mode = false) {
     std::ifstream file(filename, std::ios::binary | std::ios::in);
     file.seekg(0, std::ios::end);
@@ -274,9 +268,6 @@ int32_t executeCode(const std::string & filename, bool debug_mode = false) {
     close:
     return result;
 }
-
-
-
 int main(int n, char ** v)
 {
     /** check correct of arguments **/
